@@ -1,0 +1,3 @@
+[submodule "themes/next"]
+	path = themes/next
+	url = git@github.com:leiwuhen-67/leiwuhen-67.github.io.git
