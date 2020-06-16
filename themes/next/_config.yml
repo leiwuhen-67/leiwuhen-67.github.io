@@ -257,6 +257,24 @@ post_copyright:
   license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
 
 
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  log: false
+  model:
+    use: live2d-widget-model-shizuku   # Gantzert_Felixander  haru  shizuku tororo
+  display:
+    position: right
+    width: 150
+    height: 300
+  mobile:
+    show: true
+
+
 # ---------------------------------------------------------------
 # Misc Theme Settings
 # ---------------------------------------------------------------
