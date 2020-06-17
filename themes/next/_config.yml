@@ -441,8 +441,8 @@ gitment:
 # Available value:
 #    button | slide
 # Warning: Baidu Share does not support https.
-baidushare:
-  type: button
+#baidushare:
+  #type: slide
 
 # Share
 # This plugin is more useful in China, make sure you known how to use it.
@@ -467,16 +467,16 @@ baidushare:
 #           Technorati,Posterous,Tumblr,GoogleBookmarks,Newsvine,
 #           Evernote,Friendfeed,Vkontakte,Odnoklassniki,Mailru
 needmoreshare2:
-  enable: false
+  enable: true
   postbottom:
     enable: false
     options:
       iconStyle: box
       boxForm: horizontal
       position: bottomCenter
-      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
+      networks: 微博,微信,豆瓣,QQ空间,Twitter,Facebook
   float:
-    enable: false
+    enable: true
     options:
       iconStyle: box
       boxForm: horizontal
