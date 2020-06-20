@@ -467,7 +467,7 @@ gitment:
 #           Technorati,Posterous,Tumblr,GoogleBookmarks,Newsvine,
 #           Evernote,Friendfeed,Vkontakte,Odnoklassniki,Mailru
 needmoreshare2:
-  enable: true
+  enable: false
   postbottom:
     enable: false
     options:
@@ -476,7 +476,7 @@ needmoreshare2:
       position: bottomCenter
       networks: 微博,微信,豆瓣,QQ空间,Twitter,Facebook
   float:
-    enable: true
+    enable: false
     options:
       iconStyle: box
       boxForm: horizontal
