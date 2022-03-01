@@ -14,6 +14,7 @@ npm start
 
 现在就可以运行起来了。然而一个项目中还会涉及到页面间跳转等，这就需要使用到路由管理了。
 安装react-router-dom：`npm install react-router-dom --save` （ps：这里安装完后版本是6.2.1）
+<!-- more -->
 现在来更改官网例子，首先在src文件夹下创建components文件夹，然后创建Home.js文件、Page1.js文件、Page2.js文件、Page3.js文件，此时目录就如下所示。
 ![alt 目录](https://moguxingqiu.oss-cn-hangzhou.aliyuncs.com/upload/config/blog/c92ad280175f8cc74857caf1fed61931.jpeg)
 

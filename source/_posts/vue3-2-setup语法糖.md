@@ -12,6 +12,7 @@ vue3.0与vue3.2对比：
 
 2）、vue3.2：
 ①、只需在script标签中添加setup，变量和方法不需要return就能使用。
+<!-- more -->
 ②、组件只需要引入，不用在components中注册就能够使用。
 ③、子组件中props通过defineProps来获取：
 例如：
