@@ -23,8 +23,7 @@ Home.js文件代码如下：
 
 ```
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Route, Routes, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
  
 export default function Home () {
 	return(
@@ -204,3 +203,97 @@ export default function Page3 () {
 
 最后打印结果如下：
 ![预览结果](https://moguxingqiu.oss-cn-hangzhou.aliyuncs.com/upload/config/blog/fd6104d915c2ab89a22014c5c0731659.jpeg)
+
+7、通过配置实现路由管理（useRoutes）。
+在src目录下新建routes文件夹，在该文件夹下新建routes.js文件，代码如下：
+```
+import React from 'react';
+import { RouteObject } from "react-router-dom";
+import Home from '../components/Home';
+import Page1 from '../components/Page1';
+import Page2 from '../components/Page2';
+import Page3 from '../components/Page3';
+
+const routes: RouteObject[] = [
+	{
+		path: "/",
+		element: <Home />,
+		children: [
+			{
+				path: "page1",
+				element: <Page1 />
+			},
+			{
+				path: "page2",
+				element: <Page2 />
+			},
+			{
+				path: "page3",
+				element: <Page3 />
+			}
+		]
+	}
+]
+
+export default routes
+```
+更改App.js文件代码：
+```
+import React from 'react';
+import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
+import routes from './routes/routes.js'
+import './App.css';
+
+export default function App () {
+  const GetRoutes = () => {
+    const route = useRoutes(routes)
+    return route
+  }
+  return (
+    <Router>
+      <GetRoutes />
+    </Router>
+  )
+}
+```
+
+ps：useRoutes的整个组件都必须放入<Router>当中
+
+8、useEffect使用：
+由于函数组件没有生命周期，可以使用useEffect来替代，他可以看做是componentDidMount、componentDidUpdate、componentWillUnmount这三个函数的组合。
+```
+import React, { useState, useEffect } from 'react';
+ 
+export default function Page2 () {
+	const [count, setCount] = useState(0);
+
+	useEffect(() => {
+		getDatas ()
+	})
+
+	const getDatas = () => {
+		let arr = [134,2345,355,46]
+		console.log('arr', arr)
+	}
+
+	return(
+		<div>
+			<p>You clicked {count} times</p>
+			<button onClick={() => setCount(count + 1)}>按钮</button>
+			<div>This is Page2!</div>
+		</div>
+	);
+}
+```
+这里，在页面初次加载完会执行getDatas方法，控制台会打印出数据，每次点击按钮更新count后，控制台会依次执行getDatas方法打印出数据，如果想通知React跳过对effect的调用，可以传一个空数组作为useEffect的第二个参数，这样就只会运行一次effect(仅在组件挂在和卸载时执行)。
+```
+useEffect(() => {
+	getDatas ()
+}, [])
+```
+同样的，如果某些特定值在两次渲染之间没有发生变化，可以通知React跳过对effect的调用，比如只有count属性变化时才去调用effect，其他情况下不调用effect。
+```
+useEffect(() => {
+	getDatas ()
+}, [count])
+```
