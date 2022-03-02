@@ -1,6 +1,7 @@
 ---
 title: 使用create-react-app快速搭建React开发环境及路由等的使用
 date: 2022-03-01 14:17:48
+categories: React
 tags:
 ---
 create-react-app是来自于FaceBook，通过该命令我们无需配置就能快速构建React开发环境。是基于Webpack + ES6/
