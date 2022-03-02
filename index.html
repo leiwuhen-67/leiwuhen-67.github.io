@@ -353,7 +353,7 @@
 
       
         
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const value &#x3D; useContext(MyContext);</span><br></pre></td></tr></table></figure>
+          <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> value = useContext(MyContext);</span><br></pre></td></tr></table></figure>
 <p>接收一个context对象（createContext的返回值）并返回该context的当前值。当前的context的值由上层组件中距离当前组件最近的&lt;MyContext.Provider&gt;&lt;/MyContext.Provider&gt;的value属性决定。<br>当组件上层最近的&lt;MyContext.Provider&gt;更新时，该Hook会触发重渲染，并使用最新传递给MyContext的context value值。<br>使用context可进行父子组件传值或跨组件传值。<br>基础用法，比如现在这里有一个列表组件（父组件），里面有一个列表项组件（子组件），子组件要获取到父组件的值，可以使用props传值，这里就略过，讲一下子组件通过context来取值。</p>
           <!--noindex-->
           <div class="post-button text-center">
@@ -516,7 +516,7 @@
       
         
           <p>create-react-app是来自于FaceBook，通过该命令我们无需配置就能快速构建React开发环境。是基于Webpack + ES6/</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-react-app (cnpm install -g create-react-app)</span><br><span class="line">create-react-app react-demo</span><br><span class="line">cd react-demo</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-react-app (cnpm install -g create-react-app)</span><br><span class="line">create-react-app react-demo</span><br><span class="line">cd react-demo</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
 
 <p>现在就可以运行起来了。然而一个项目中还会涉及到页面间跳转等，这就需要使用到路由管理了。<br>安装react-router-dom：<code>npm install react-router-dom --save</code> （ps：这里安装完后版本是6.2.1）</p>
           <!--noindex-->
@@ -576,7 +576,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/28/vue3-2-setup%E8%AF%AD%E6%B3%95%E7%B3%96/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/28/vue3.0%E4%B8%8Evue3.2%E5%AF%B9%E6%AF%94/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="江峰">
@@ -595,7 +595,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/28/vue3-2-setup%E8%AF%AD%E6%B3%95%E7%B3%96/" itemprop="url">vue3.2 setup语法糖</a></h1>
+                <a class="post-title-link" href="/2022/02/28/vue3.0%E4%B8%8Evue3.2%E5%AF%B9%E6%AF%94/" itemprop="url">vue3.0与vue3.2对比</a></h1>
         
 
         <div class="post-meta">
@@ -647,7 +647,7 @@
 
           
           
-             <span id="/2022/02/28/vue3-2-setup%E8%AF%AD%E6%B3%95%E7%B3%96/" class="leancloud_visitors" data-flag-title="vue3.2 setup语法糖">
+             <span id="/2022/02/28/vue3.0%E4%B8%8Evue3.2%E5%AF%B9%E6%AF%94/" class="leancloud_visitors" data-flag-title="vue3.0与vue3.2对比">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -683,7 +683,7 @@
 <p>2）、vue3.2：<br>①、只需在script标签中添加setup，变量和方法不需要return就能使用。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/02/28/vue3-2-setup%E8%AF%AD%E6%B3%95%E7%B3%96/#more" rel="contents">
+            <a class="btn" href="/2022/02/28/vue3.0%E4%B8%8Evue3.2%E5%AF%B9%E6%AF%94/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
