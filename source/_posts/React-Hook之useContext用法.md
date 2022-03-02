@@ -4,7 +4,7 @@ date: 2022-03-02 17:55:26
 categories: React
 tags:
 ---
-```
+```JavaScript
 const value = useContext(MyContext);
 ```
 接收一个context对象（createContext的返回值）并返回该context的当前值。当前的context的值由上层组件中距离当前组件最近的<MyContext.Provider></MyContext.Provider>的value属性决定。
@@ -14,7 +14,7 @@ const value = useContext(MyContext);
 <!-- more -->
 父组件List.js代码：
 
-```
+```JavaScript
 import ListItem from './ListItem.js'
 import { useState } from 'react'
 
@@ -45,7 +45,7 @@ export default function List () {
 ```
 子组件ListItem.js：
 
-```
+```JavaScript
 export default function ListItem () {
     /*
     此处获取父组件传的值，然后渲染每一列表项的数据，该怎么写呢？？？？
@@ -55,7 +55,7 @@ export default function ListItem () {
 首先创建ListContext.js文件来统一管理上下文的实例，通过export default将实例导出，在List.js文件中引入，包裹需要获取父组件值的子组件，然后在子组件中导入该实例进行使用。
 ListContext.js代码：
 
-```
+```JavaScript
 import { createContext } from 'react';
 
 const ListContext = createContext()
@@ -64,7 +64,7 @@ export default ListContext
 ```
 现在在List.js文件中引入该实例，修改后代码如下：
 
-```
+```JavaScript
 import ListItem from './ListItem.js'
 import { useState } from 'react'
 import ListContext from './ListContext.js'
@@ -99,7 +99,7 @@ export default function List () {
 ```
 子组件ListItem.js中代码：
 
-```
+```JavaScript
 import { useContext } from 'react';
 import ListContext from './ListContext.js'
 
@@ -126,7 +126,7 @@ export default function ListItem () {
 比如ListItem.js组件里又嵌套了一层Item组件，在Item组件里想获取祖先组件List的值。
 现在需要修改ListItem.js文件代码为：
 
-```
+```JavaScript
 import Item from './Item.js'
 
 export default function ListItem () {
@@ -137,7 +137,7 @@ export default function ListItem () {
 ```
 孙子组件Item.js代码：
 
-```
+```JavaScript
 import ListContext from './ListContext.js'
 import { useContext } from 'react'
 

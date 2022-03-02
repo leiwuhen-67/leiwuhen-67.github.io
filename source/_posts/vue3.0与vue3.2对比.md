@@ -1,5 +1,5 @@
 ---
-title: vue3.2 setup语法糖
+title: vue3.0与vue3.2对比
 date: 2022-02-28 10:42:15
 categories: JavaScript
 tags:
@@ -17,7 +17,7 @@ vue3.0与vue3.2对比：
 ③、子组件中props通过defineProps来获取：
 例如：
 
-```
+```JavaScript
 <template>
   <div>
     子组件{{name}} // 心欲无痕========
@@ -39,7 +39,7 @@ vue3.0与vue3.2对比：
 ④、子组件中emit通过defineEmits来获取：
 例如：
 
-```
+```JavaScript
 <template>
   <div>
     子组件{{name}}

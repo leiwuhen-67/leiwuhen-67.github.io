@@ -6,7 +6,7 @@ tags:
 ---
 create-react-app是来自于FaceBook，通过该命令我们无需配置就能快速构建React开发环境。是基于Webpack + ES6/
 
-```
+```JavaScript
 npm install -g create-react-app (cnpm install -g create-react-app)
 create-react-app react-demo
 cd react-demo
@@ -22,7 +22,7 @@ npm start
 ![alt 预览结果](https://moguxingqiu.oss-cn-hangzhou.aliyuncs.com/upload/config/blog/573dd6fd5a51e5771168215db9004f93.jpeg)
 Home.js文件代码如下：
 
-```
+```JavaScript
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
  
@@ -52,7 +52,7 @@ export default function Home () {
  
 Page1.js代码如下：
 
-```
+```JavaScript
 export default function Page1 () {
 	return(
 		<div>
@@ -66,7 +66,7 @@ Page2.js与page3.js代码内容类似。
 页面创建完了，现在来配置路由，更改App.js文件中内容，引入路由管理所需的组件，以及刚刚新建的几个页面。代码如下：
 ①、嵌套路由的配置。
 
-```
+```JavaScript
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
@@ -99,7 +99,7 @@ export default class App extends React.Component {
 ②、非嵌套路由：
 更改App.js文件中代码：
 
-```
+```JavaScript
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
@@ -134,11 +134,11 @@ export default class App extends React.Component {
 ①、通过useParams获取动态路由的值。
 ②、通过useSearchParams获取查询字符串的值。
 
-```
+```JavaScript
 import { useParams, useSearchParams  } from "react-router-dom";
 ```
 
-```
+```JavaScript
 // 获取动态路由的值
   const params = useSearchParams();
 
@@ -150,7 +150,7 @@ import { useParams, useSearchParams  } from "react-router-dom";
 上述searchParams变量，通过typeof查看是一个对象，但是不可直接点击查看其属性，可通过get方法访问指定属性的值。。
 可通过setSearchParams修改查询字符串的值。如：
 
-```
+```JavaScript
 setSearchParams({
 	name: "心欲无痕"
 })
@@ -158,7 +158,7 @@ setSearchParams({
 
 5、可通过Link组件跳转，也可通过useNavigate方法跳转：
 
-```
+```JavaScript
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -179,7 +179,7 @@ export default function Home () {
 6、跳转传参：
 刚刚的doJump方法改成这样：
 
-```
+```JavaScript
 const doJump = () => {
 	navigate("/Page3", {state: {name: "张三", age: 28}})
 }
@@ -187,7 +187,7 @@ const doJump = () => {
 
 然后在page3.js页面通过如下方式获取：
 
-```
+```JavaScript
 import React from 'react';
 import { useLocation } from 'react-router-dom';
  
@@ -207,7 +207,7 @@ export default function Page3 () {
 
 7、通过配置实现路由管理（useRoutes）。
 在src目录下新建routes文件夹，在该文件夹下新建routes.js文件，代码如下：
-```
+```JavaScript
 import React from 'react';
 import { RouteObject } from "react-router-dom";
 import Home from '../components/Home';
@@ -239,7 +239,7 @@ const routes: RouteObject[] = [
 export default routes
 ```
 更改App.js文件代码：
-```
+```JavaScript
 import React from 'react';
 import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
 import routes from './routes/routes.js'
@@ -262,7 +262,7 @@ ps：useRoutes的整个组件都必须放入<Router>当中
 
 8、useEffect使用：
 由于函数组件没有生命周期，可以使用useEffect来替代，他可以看做是componentDidMount、componentDidUpdate、componentWillUnmount这三个函数的组合。
-```
+```JavaScript
 import React, { useState, useEffect } from 'react';
  
 export default function Page2 () {
@@ -287,13 +287,13 @@ export default function Page2 () {
 }
 ```
 这里，在页面初次加载完会执行getDatas方法，控制台会打印出数据，每次点击按钮更新count后，控制台会依次执行getDatas方法打印出数据，如果想通知React跳过对effect的调用，可以传一个空数组作为useEffect的第二个参数，这样就只会运行一次effect(仅在组件挂在和卸载时执行)。
-```
+```JavaScript
 useEffect(() => {
 	getDatas ()
 }, [])
 ```
 同样的，如果某些特定值在两次渲染之间没有发生变化，可以通知React跳过对effect的调用，比如只有count属性变化时才去调用effect，其他情况下不调用effect。
-```
+```JavaScript
 useEffect(() => {
 	getDatas ()
 }, [count])
