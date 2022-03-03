@@ -64,7 +64,7 @@ export default function Page1 () {
 
 Page2.js与page3.js代码内容类似。
 页面创建完了，现在来配置路由，更改App.js文件中内容，引入路由管理所需的组件，以及刚刚新建的几个页面。代码如下：
-①、嵌套路由的配置。
+### ①、嵌套路由的配置。
 
 ```JavaScript
 import React from 'react';
@@ -96,7 +96,7 @@ export default class App extends React.Component {
 ![预览结果](https://moguxingqiu.oss-cn-hangzhou.aliyuncs.com/upload/config/blog/573dd6fd5a51e5771168215db9004f93.jpeg)
 点击跳转到Page1后效果如下：
 ![预览结果](https://moguxingqiu.oss-cn-hangzhou.aliyuncs.com/upload/config/blog/2d6bdc082f0e97fb7f38a0ff4cef7dca.jpeg)
-②、非嵌套路由：
+### ②、非嵌套路由：
 更改App.js文件中代码：
 
 ```JavaScript
@@ -126,11 +126,11 @@ export default class App extends React.Component {
 
 现在点击跳转到Page1后效果如下：
 ![alt 预览结果](https://moguxingqiu.oss-cn-hangzhou.aliyuncs.com/upload/config/blog/a220e1a6a0845d00318e23ac4195ef0f.jpeg)
-注意点：
-1、在react-router-dom v6中Route组件必须使用Routes嵌套，替换了v5中的Switch组件。
-2、将原来的component改为element，必须以组件形式引入，而不是原来一个变量就行了。如{<Home/>}
-3、嵌套路由必须在父级中添加Outlet组件，作为子组件的占位符，相当于vue-router中的router-view。
-4、获取路由参数：
+总结：
+### 1、在react-router-dom v6中Route组件必须使用Routes嵌套，替换了v5中的Switch组件。
+### 2、将原来的component改为element，必须以组件形式引入，而不是原来一个变量就行了。如{<Home/>}
+### 3、嵌套路由必须在父级中添加Outlet组件，作为子组件的占位符，相当于vue-router中的router-view。
+### 4、获取路由参数：
 ①、通过useParams获取动态路由的值。
 ②、通过useSearchParams获取查询字符串的值。
 
@@ -156,7 +156,7 @@ setSearchParams({
 })
 ```
 
-5、可通过Link组件跳转，也可通过useNavigate方法跳转：
+### 5、可通过Link组件跳转，也可通过useNavigate方法跳转：
 
 ```JavaScript
 import React from "react";
@@ -176,7 +176,7 @@ export default function Home () {
 }
 ```
 
-6、跳转传参：
+### 6、跳转传参：
 刚刚的doJump方法改成这样：
 
 ```JavaScript
@@ -205,7 +205,7 @@ export default function Page3 () {
 最后打印结果如下：
 ![预览结果](https://moguxingqiu.oss-cn-hangzhou.aliyuncs.com/upload/config/blog/fd6104d915c2ab89a22014c5c0731659.jpeg)
 
-7、通过配置实现路由管理（useRoutes）。
+### 7、通过配置实现路由管理（useRoutes）。
 在src目录下新建routes文件夹，在该文件夹下新建routes.js文件，代码如下：
 ```JavaScript
 import React from 'react';
@@ -260,7 +260,7 @@ export default function App () {
 
 ps：useRoutes的整个组件都必须放入<Router>当中
 
-8、useEffect使用：
+### 8、useEffect使用：
 由于函数组件没有生命周期，可以使用useEffect来替代，他可以看做是componentDidMount、componentDidUpdate、componentWillUnmount这三个函数的组合。
 ```JavaScript
 import React, { useState, useEffect } from 'react';
