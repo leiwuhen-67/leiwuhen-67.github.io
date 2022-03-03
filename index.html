@@ -355,7 +355,7 @@
         
           <h3 id="一、useMemo"><a href="#一、useMemo" class="headerlink" title="一、useMemo:"></a>一、useMemo:</h3><p>用法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> memoizedValue = useMemo(<span class="function"><span class="params">()</span> =&gt;</span> computeExpensiveValue(a, b), [a, b]);</span><br></pre></td></tr></table></figure>
-<p>返回一个memoized值，即有记忆的值。可以类比成vue中的computed属性，只有相关依赖项发生改变才会重新计算。<br>该方法有两个参数，第一个参数是一个函数，第二个参数是一个依赖项数组，他仅会在某个依赖项改变时才会重新计算memoized值。这种优化有助于在每次渲染时都进行高开销的计算。<br>注意：<br>①、传入useMemo的函数在初次渲染期间就会执行，因此不要在函数内部执行与渲染无关的操作。<br>②、如果没有传入依赖项数组，useMemo会在每次渲染时都计算新的值。<br>下面举个例子，页面中有count跟val两个变量，有两个按钮分别操作count跟val的值，还有一个方法用于计算count与数值10的和。代码如下：</p>
+<p>返回一个memoized值，即有记忆的值。可以类比成vue中的computed属性，只有相关依赖项发生改变才会重新计算。<br>该方法有两个参数，第一个参数是一个函数，第二个参数是一个依赖项数组，他仅会在某个依赖项改变时才会重新计算memoized值。这种优化有助于避免在每次渲染时都进行高开销的计算。<br>注意：<br>①、传入useMemo的函数在初次渲染期间就会执行，因此不要在函数内部执行与渲染无关的操作。<br>②、如果没有传入依赖项数组，useMemo会在每次渲染时都计算新的值。<br>下面举个例子，页面中有count跟val两个变量，有两个按钮分别操作count跟val的值，还有一个方法用于计算count与数值10的和。代码如下：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2022/03/03/React-Hook%E4%B9%8BuseMemo%E4%B8%8EuseCallback/#more" rel="contents">
