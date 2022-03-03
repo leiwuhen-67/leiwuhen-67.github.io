@@ -250,6 +250,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/03/React-Hook%E4%B9%8BuseReducer%E4%BD%BF%E7%94%A8%E5%8F%8A%E8%B7%A8%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="江峰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="江峰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/03/React-Hook%E4%B9%8BuseReducer%E4%BD%BF%E7%94%A8%E5%8F%8A%E8%B7%A8%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" itemprop="url">React Hook之useReducer使用及跨组件通信</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-03T14:28:31+08:00">
+                2022-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2022/03/03/React-Hook%E4%B9%8BuseReducer%E4%BD%BF%E7%94%A8%E5%8F%8A%E8%B7%A8%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" class="leancloud_visitors" data-flag-title="React Hook之useReducer使用及跨组件通信">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, dispatch] = useReducer(reducer, initialArg, init);</span><br></pre></td></tr></table></figure>
+<p>useReducer是useState的替代方案。在某些场景下，useReducer会比useState更使用，例如state逻辑较复杂，里面包含多个子组件，或者下一个state依赖于之前的state等。并且，使用sueReducer还能给那些会触发深更新的组件做性能优化，因为你可以向子组件传递dispatch而不是回调函数。<br>例如，这里有一个例子，页面上显示一个变量count的值，同时有两个按钮，分别对这个变量进行加操作和减操作。<br>先来写reducer方法，这里便于阅读和更改，把erducer方法单独抽离出来放在reducer.js文件中，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">reducer</span> (<span class="params">state, action</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">"decrement"</span>:</span><br><span class="line">			<span class="keyword">return</span> &#123;</span><br><span class="line">				count: state.count - <span class="number">1</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">"increment"</span>:</span><br><span class="line">			<span class="keyword">return</span> &#123;</span><br><span class="line">				count: state.count + <span class="number">1</span></span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个reducer方法就是一会儿需要用到的加操作和减操作。<br>现在新建一个Parent.js文件，开始完成上面的需求，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useReducer &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Parent</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> initialState = &#123;<span class="attr">count</span>: <span class="number">0</span>&#125;</span><br><span class="line">	<span class="keyword">const</span> [state, dispatch] = useReducer(reducer, initialState)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;&gt;</span><br><span class="line">			&lt;div&gt;Count：&#123;state.count&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">			&lt;button onClick=&#123;() =&gt; dispatch(&#123;type: "decrement"&#125;)&#125;&gt;-&lt;/</span>button&gt;</span><br><span class="line">			&lt;button onClick=&#123;() =&gt; dispatch(&#123;<span class="attr">type</span>: <span class="string">"increment"</span>&#125;)&#125;&gt;+&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>&gt;</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在点击按钮加和减就可以进行加减操作，并能看到数据发生变化。<br>针对这个需求可以看出使用useState明显会更方便，，现在稍加改变下需求，在Parent组件里有两个子组件，ChildOne组件和ChildTwo组件，在ChildTwo组件里能获取到父组件Parent的数据，在ChildOne组件也能获取到父组件Parent的数据，同时在ChildOne组件里可更改父组件里的数据，保证父组件和俩子组件里数据能实时更新，这时候我们就需要用到useReducer和useContext来实现了。<br>思路大致是这样：<br>1）、父组件通过createContext.Prover组件，value属性来传递数据给俩子组件。<br>2）、子组件通过useContext方法来获取父组件的数据。<br>3）、子组件通过reducer方法来更改父组件数据。<br>将createContext这一步的逻辑放在新文件PageContext.js中，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createContext &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">const</span> DataContext = createContext()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> DataContext</span><br></pre></td></tr></table></figure>
+<p>父组件Parent.js代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useReducer &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer.js'</span></span><br><span class="line"><span class="keyword">import</span> PageContext <span class="keyword">from</span> <span class="string">'./PageContext.js'</span></span><br><span class="line"><span class="keyword">import</span> ChildOne <span class="keyword">from</span> <span class="string">'./ChildOne.js'</span></span><br><span class="line"><span class="keyword">import</span> ChildTwo <span class="keyword">from</span> <span class="string">'./ChildTwo.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Page6</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> initialState = &#123;<span class="attr">count</span>: <span class="number">0</span>&#125;</span><br><span class="line">	<span class="keyword">const</span> [state, dispatch] = useReducer(reducer, initialState)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;&gt;</span><br><span class="line">			&lt;div&gt;Count：&#123;state.count&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">			&lt;PageContext.Provider value=&#123;&#123;state, dispatch&#125;&#125;&gt;</span></span><br><span class="line"><span class="regexp">				&lt;ChildOne /</span>&gt;</span><br><span class="line">				&lt;ChildTwo /&gt;</span><br><span class="line">			&lt;<span class="regexp">/PageContext.Provider&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>&gt;</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在子组件ChildTwo中通过useContext来获取数据，ChildTwo.js代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;useContext&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> PageContext <span class="keyword">from</span> <span class="string">'../PageContext.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">ChildTwo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> dataContext = useContext(PageContext)</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;&gt;</span><br><span class="line">			&lt;p&gt;&#123;dataContext.state.count&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">			&lt;div&gt;ChildTwo页面&lt;/</span>div&gt;</span><br><span class="line">		&lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">	)</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>现在在子组件ChildOne中通过useContext来获取数据，并通过reducer方法来更改数据。ChildOne.js代码如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;useContext&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> PageContext <span class="keyword">from</span> <span class="string">'../PageContext.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Child</span> (<span class="params">props</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> dataContext = useContext(PageContext)</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;&gt;</span><br><span class="line">			&lt;div&gt;count：&#123;dataContext.state.count&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">			&lt;button onClick=&#123;() =&gt; dataContext.dispatch(&#123;type: "decrement"&#125;)&#125;&gt;change&lt;/</span>button&gt;</span><br><span class="line">		&lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">	)</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/02/React-Hook%E4%B9%8BuseContext%E7%94%A8%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1241,7 +1410,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
