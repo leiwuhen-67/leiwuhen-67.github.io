@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="江峰">
 <meta property="og:description" content="一、useMemo:用法： 1const memoizedValue &#x3D; useMemo(() &#x3D;&gt; computeExpensiveValue(a, b), [a, b]); 返回一个memoized值，即有记忆的值。可以类比成vue中的computed属性，只有相关依赖项发生改变才会重新计算。该方法有两个参数，第一个参数是一个函数，第二个参数是一个依赖项数组，他仅会在某个依赖项改变时才会">
 <meta property="article:published_time" content="2022-03-03T09:15:36.000Z">
-<meta property="article:modified_time" content="2022-03-03T09:33:19.599Z">
+<meta property="article:modified_time" content="2022-03-03T09:36:02.153Z">
 <meta property="article:author" content="江峰">
 <meta name="twitter:card" content="summary">
 
@@ -371,7 +371,7 @@
 <p>这里为了证明子组件有没有重新渲染，我在页面中打印出了当前时间距离1970年1月1日的时间戳。<br>现在点击俩按钮分别更改count和val的值，发现子组件都会重新渲染，因为页面上显示的值在不断变化。这是为啥，这里缺少一个东西，那就是memo，在导出Child组件时需要使用memo将其包裹起来，而memo则需要先导入。修改后的代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; memo &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> memo(<span class="function"><span class="keyword">function</span> <span class="title">Child</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;&gt;</span><br><span class="line">			&lt;div&gt;hello world!&#123;<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>&gt;</span><br><span class="line">	)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>现在在分别点击俩按钮改变count和val的值，发现只有count改变时，子组件才会重新渲染，改变val的值时子组件不会重新渲染。<br>如果改变useCallback依赖项数组为[count, val]，会发现无论是改变count和val，子组件都会重新渲染。<br>使用useCallback时，子组件一定要使用memo进行包裹，其作用是对组件前后两次进行浅对比，阻止不必要的更新，否则会无效。</p>
-<p>###useMemo与useCallback对比：<br>通过上面会发现useMemo和useCallback差不多，都是接收俩参数，第一个为回调函数，第二个为依赖项数组。<br>共同点：<br>仅当依赖项发生改变时，才会重新计算结果，也就是起到缓存作用。</p>
+<h3 id="useMemo与useCallback对比："><a href="#useMemo与useCallback对比：" class="headerlink" title="useMemo与useCallback对比："></a>useMemo与useCallback对比：</h3><p>通过上面会发现useMemo和useCallback差不多，都是接收俩参数，第一个为回调函数，第二个为依赖项数组。<br>共同点：<br>仅当依赖项发生改变时，才会重新计算结果，也就是起到缓存作用。</p>
 <p>区别：<br>1、useMemo的计算结果是return回来的值，主要用于缓存计算结果的值，应用场景是只有某一依赖项改变时才去重新计算。<br>2、useCallback的计算结果是函数，主要用于缓存函数，应用场景：需要缓存的函数，因为在函数式组件中，任何一个state变化时，整个组件都会重新渲染，而有时候只是父组件中数据变化了，子组件并没有变化，这时应该把子组件缓存起来，提高性能，避免资源浪费。</p>
 
       
@@ -542,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、useMemo"><span class="nav-number">1.</span> <span class="nav-text">一、useMemo:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、useCallback："><span class="nav-number">2.</span> <span class="nav-text">二、useCallback：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、useMemo"><span class="nav-number">1.</span> <span class="nav-text">一、useMemo:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、useCallback："><span class="nav-number">2.</span> <span class="nav-text">二、useCallback：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useMemo与useCallback对比："><span class="nav-number">3.</span> <span class="nav-text">useMemo与useCallback对比：</span></a></li></ol></div>
             
 
           </div>
