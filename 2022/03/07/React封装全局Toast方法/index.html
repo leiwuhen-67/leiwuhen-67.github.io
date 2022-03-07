@@ -85,14 +85,14 @@
 
 
 
-<meta name="description" content="在项目中经常会遇到需要引入外部字体文件的问题。。这里有个奇怪的问题，先记录下，问题解决了，但是不知道为啥会这样:在vue-cli3.0中像这样引入完全正常。 1234@font-face &amp;#123;    font-family: myFont;    src: url(&quot;.&#x2F;DINOffcPro-Black.ttf&quot;);&amp;#125; 但是在vue-cli2.0中像">
+<meta name="description" content="项目中经常会使用到Toast，尤其是接口报错或者用户执行某一操作成功或失败后给予提示。大概思路：1）、创建Toast组件。2）、引入Toast组件，封装showToast方法，将其插入到dom文档中。3）、封装全局方法，便于在其他组件中随时使用，而不用每次都引入。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css文件中引入外部字体文件">
-<meta property="og:url" content="http://yoursite.com/2021/11/17/css%E6%96%87%E4%BB%B6%E4%B8%AD%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E5%AD%97%E4%BD%93%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:title" content="React封装全局Toast方法">
+<meta property="og:url" content="http://yoursite.com/2022/03/07/React%E5%B0%81%E8%A3%85%E5%85%A8%E5%B1%80Toast%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="江峰">
-<meta property="og:description" content="在项目中经常会遇到需要引入外部字体文件的问题。。这里有个奇怪的问题，先记录下，问题解决了，但是不知道为啥会这样:在vue-cli3.0中像这样引入完全正常。 1234@font-face &amp;#123;    font-family: myFont;    src: url(&quot;.&#x2F;DINOffcPro-Black.ttf&quot;);&amp;#125; 但是在vue-cli2.0中像">
-<meta property="article:published_time" content="2021-11-17T05:21:56.000Z">
-<meta property="article:modified_time" content="2021-11-17T05:22:32.559Z">
+<meta property="og:description" content="项目中经常会使用到Toast，尤其是接口报错或者用户执行某一操作成功或失败后给予提示。大概思路：1）、创建Toast组件。2）、引入Toast组件，封装showToast方法，将其插入到dom文档中。3）、封装全局方法，便于在其他组件中随时使用，而不用每次都引入。">
+<meta property="article:published_time" content="2022-03-07T10:08:02.000Z">
+<meta property="article:modified_time" content="2022-03-07T10:15:30.266Z">
 <meta property="article:author" content="江峰">
 <meta name="twitter:card" content="summary">
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2021/11/17/css文件中引入外部字体文件/"/>
+  <link rel="canonical" href="http://yoursite.com/2022/03/07/React封装全局Toast方法/"/>
 
 
 
 
 
-  <title>css文件中引入外部字体文件 | 江峰</title>
+  <title>React封装全局Toast方法 | 江峰</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/17/css%E6%96%87%E4%BB%B6%E4%B8%AD%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E5%AD%97%E4%BD%93%E6%96%87%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/07/React%E5%B0%81%E8%A3%85%E5%85%A8%E5%B1%80Toast%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="江峰">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">css文件中引入外部字体文件</h1>
+          <h1 class="post-title" itemprop="name headline">React封装全局Toast方法</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-17T13:21:56+08:00">
-                2021-11-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-07T18:08:02+08:00">
+                2022-03-07
               </time>
             
 
@@ -293,6 +293,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -300,7 +322,7 @@
 
           
           
-             <span id="/2021/11/17/css%E6%96%87%E4%BB%B6%E4%B8%AD%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E5%AD%97%E4%BD%93%E6%96%87%E4%BB%B6/" class="leancloud_visitors" data-flag-title="css文件中引入外部字体文件">
+             <span id="/2022/03/07/React%E5%B0%81%E8%A3%85%E5%85%A8%E5%B1%80Toast%E6%96%B9%E6%B3%95/" class="leancloud_visitors" data-flag-title="React封装全局Toast方法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -331,10 +353,23 @@
       
 
       
-        <p>在项目中经常会遇到需要引入外部字体文件的问题。。这里有个奇怪的问题，先记录下，问题解决了，但是不知道为啥会这样:<br>在vue-cli3.0中像这样引入完全正常。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: myFont;</span><br><span class="line">    src: url(&quot;.&#x2F;DINOffcPro-Black.ttf&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是在vue-cli2.0中像上面那样引入的话，如果是引入.otf文件的话是正常的，如果是引入.ttf文件的话会报错，这里，如果引入.ttf文件的话，需要像如下方式引入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: myFont;</span><br><span class="line">    src: url-loader(&quot;.&#x2F;DINOffcPro-Black.ttf&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>项目中经常会使用到Toast，尤其是接口报错或者用户执行某一操作成功或失败后给予提示。<br>大概思路：<br>1）、创建Toast组件。<br>2）、引入Toast组件，封装showToast方法，将其插入到dom文档中。<br>3）、封装全局方法，便于在其他组件中随时使用，而不用每次都引入。</p>
+<a id="more"></a>
+<p>toast.css代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.toast-container</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">	<span class="attribute">background-color</span>: transparent;</span><br><span class="line">	<span class="attribute">position</span>: fixed;</span><br><span class="line">	<span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">justify-content</span>: center;</span><br><span class="line">	<span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.toast</span> &#123;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">max-width</span>: <span class="number">220px</span>;</span><br><span class="line">	<span class="attribute">min-width</span>: <span class="number">120px</span>;</span><br><span class="line">	<span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.7</span>);</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">	<span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line">	<span class="attribute">animation</span>: translate <span class="number">0.5s</span> ease-in-out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> translate &#123;</span><br><span class="line">	0% &#123;</span><br><span class="line">		<span class="attribute">opacity</span>: <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line">	100% &#123;</span><br><span class="line">		<span class="attribute">opacity</span>: <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Toast.js代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"./toast.css"</span></span><br><span class="line"><span class="keyword">import</span> &#123; useEffect, useState &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Toast</span> (<span class="params">props</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> [isShow, setIsShow] = useState(<span class="literal">true</span>)</span><br><span class="line">	useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (isShow) &#123;</span><br><span class="line">			setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">				setIsShow(<span class="literal">false</span>)</span><br><span class="line">				<span class="built_in">document</span>.body.removeChild(<span class="built_in">document</span>.getElementById(<span class="string">'my-toast'</span>))</span><br><span class="line">			&#125;, props.duration || <span class="number">2200</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;, [isShow])</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;&gt;</span><br><span class="line">			&#123;</span><br><span class="line">				isShow ?</span><br><span class="line">				(</span><br><span class="line">					&lt;div className=<span class="string">"toast-container"</span>&gt;</span><br><span class="line">						&lt;div className=<span class="string">"toast"</span>&gt;&#123;props.children&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">					&lt;/</span>div&gt;</span><br><span class="line">				) : <span class="string">""</span></span><br><span class="line">			&#125;</span><br><span class="line">		&lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">	)</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>showToast.js代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> Toast <span class="keyword">from</span> <span class="string">'./Toast.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> toast = &#123;</span><br><span class="line">	showToast: <span class="function">(<span class="params">txt, duration = <span class="number">2200</span></span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">let</span> div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line">		div.id = <span class="string">'my-toast'</span></span><br><span class="line">		<span class="built_in">document</span>.body.appendChild(div)</span><br><span class="line">		<span class="keyword">const</span> show = <span class="xml"><span class="tag">&lt;<span class="name">Toast</span> <span class="attr">duration</span>=<span class="string">&#123;duration&#125;</span>&gt;</span>&#123;txt&#125;<span class="tag">&lt;/<span class="name">Toast</span>&gt;</span></span></span><br><span class="line">		ReactDOM.render(show, div)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> toast</span><br></pre></td></tr></table></figure>
+<p>最后封装全局方法，这里有两种，一种是挂载到window对象上，一种是直接挂载到React上。都需要先在项目的index.js中引入上面的index.js文件。<br>index.js部分代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Toast <span class="keyword">from</span> <span class="string">'./components/Toast/index.js'</span></span><br><span class="line"><span class="built_in">window</span>.Toast = Toast.showToast</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line">React.$toast = Toast.showToast</span><br></pre></td></tr></table></figure>
+<p>如果是挂载到window对象上，那么在其他地方使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.Toast(<span class="string">'什么鬼！什么鬼！'</span>)</span><br></pre></td></tr></table></figure>
+<p>如果是挂载到React上，则这样使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">React.$toast(<span class="string">'什么鬼！什么鬼！'</span>)</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -362,8 +397,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/06/13/web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/" rel="next" title="web前端开发总结">
-                <i class="fa fa-chevron-left"></i> web前端开发总结
+              <a href="/2022/03/03/React-Hook%E4%B9%8BuseMemo%E4%B8%8EuseCallback/" rel="next" title="React Hook之useMemo与useCallback">
+                <i class="fa fa-chevron-left"></i> React Hook之useMemo与useCallback
               </a>
             
           </div>
@@ -371,10 +406,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2022/02/28/vue3.0%E4%B8%8Evue3.2%E5%AF%B9%E6%AF%94/" rel="prev" title="vue3.0与vue3.2对比">
-                vue3.0与vue3.2对比 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
